@@ -83,10 +83,7 @@ Or
 <h3>Pages:</h3>
 
 <a href="userPage.jsp">My Page</a><br>
-<a href="search.html">Search Page</a><br>
-
-<a href="/TestProjectOriginal/Servlet6">NewListings</a><br>
-<a href="other.html">Other Page</a><br>
+<a href="forumList">NewListings</a><br>
 
 
 

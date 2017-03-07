@@ -70,7 +70,7 @@ h1{
 	--%>
 	
 <h1> Thank you for registering <b> <%=user.getloginName() %> </b>!</h1>
-<div>
+
 <%
 
 ResultSet rs = (ResultSet)request.getAttribute("resultSet");

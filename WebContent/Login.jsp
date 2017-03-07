@@ -42,19 +42,19 @@ h1{
 <body>
 <h1>Please enter your login information:</h1>
 
-<form action="/TestProjectOriginal/Servlet7" method="post">
+<form action="/Main/loginServlet" method="post">
  
       <table>
        <tr>
           <td align="right">User Name:</td>
           <td align="left"><input type="text"
-              name="loginName" length="30"/></td>
+              name="loginName"/></td>
         </tr>
  
                 <tr>
           <td align="right">Password:</td>
           <td align="left"><input type="password"
-              name="pass" length="30"/></td>
+              name="pass"/></td>
         </tr>
        
       </table>

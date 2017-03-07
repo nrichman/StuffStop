@@ -42,33 +42,33 @@ h1{
 <body>
 <h1>Please enter your information</h1>
 
-<form action="/TestProjectOriginal/Servlet5" method="post">
+<form action="registerUser" method="post">
  
       <table>
        <tr>
           <td align="right">User Name:</td>
           <td align="left"><input type="text"
-              name="loginName" length="30"/></td>
+              name="loginName"/></td>
         </tr>
                 <tr>
           <td align="right">Email:</td>
           <td align="left"><input type="text"
-              name="email" length="25"/></td>
+              name="email"/></td>
         </tr>
         <tr>
           <td align="right">First name:</td>
           <td align="left"><input type="text"
-              name="firstname" length="30"/></td>
+              name="firstname" /></td>
         </tr>
         <tr>
           <td align="right">Last name:</td>
           <td align="left"><input type="text"
-              name="lastname" length="30"/></td>
+              name="lastname"/></td>
         </tr>
                 <tr>
           <td align="right">Password:</td>
-          <td align="left"><input type="text"
-              name="pass" length="30"/></td>
+          <td align="left"><input type="password"
+              name="pass" /></td>
         </tr>
        
       </table>
