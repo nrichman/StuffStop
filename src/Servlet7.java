@@ -11,15 +11,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/Servlet3")
-public class Servlet3 extends HttpServlet {
+@WebServlet("/Servlet7")
+public class Servlet7 extends HttpServlet {
     private static final long        serialVersionUID    = 1L;
     static String            url        = "jdbc:mysql://cmkoesters.ddns.net:3306/myDB";
     static String            user        = "newremoteuser";
     static String            password        = "password";
     static Connection            connection    = null;
 
-    public Servlet3() {
+    public Servlet7() {
         super();
     }
 
@@ -48,50 +48,43 @@ public class Servlet3 extends HttpServlet {
             System.out.println("Failed to make connection!");
         }
         
-        response.getWriter().println("Made it to Servlet 3!");
-        String choice = request.getParameter("itemToUpdate");
-        response.getWriter().append("Choice: " + choice + "<br>");
+        response.getWriter().println("Made it to Servlet 5!");
         
-        String quantity = request.getParameter("quantity");
-        response.getWriter().append("Quantity: " + quantity + "<br>");
         
-
-        
+        String id = request.getParameter("loginName");
+        String pass = request.getParameter("pass");
         /*
-        String itemNumber = request.getParameter("number");
-        response.getWriter().append("number: " + itemNumber + "<br>");
-        String itemName = request.getParameter("name");
-        response.getWriter().append("Name: " + itemName + "<br>");
-        String itemDistributor = request.getParameter("dist");
-        response.getWriter().append("Distributor: " + itemDistributor + "<br>");
-        String itemDescription = request.getParameter("desc");
-        response.getWriter().append("Description: " + itemDescription + "<br>");
-        String Quantity = request.getParameter("quantity");
-        response.getWriter().append("Quantity: " + Quantity + "<br>");
+        response.getWriter().append("ID: " + id + "<br>");
+        String firstname = request.getParameter("firstname");
+        response.getWriter().append("First Name: " + firstname + "<br>");
+        String lastname = request.getParameter("lastname");
+        response.getWriter().append("Last Name: " + lastname + "<br>");
+        String email = request.getParameter("email");
+        response.getWriter().append("Email: " + email + "<br>");
+       
+        response.getWriter().append("Pass: " + pass + "<br>");
+        
         int itemQuantity = Integer.parseInt(Quantity);
-        
-
         */
-         
-        String toChange = choice;
-        int newQuantity = Integer.parseInt(quantity);
         
-        try {
-            String updateSQL = "UPDATE inventory SET QUANTITY ='"+newQuantity+"' WHERE NUMBER = '"+toChange+"' ";
-            
-            PreparedStatement preparedStatement = connection.prepareStatement(updateSQL);
-            preparedStatement.execute();
-            
 
-            String selectSQL = "SELECT * FROM inventory";
+        
+         
+        try {
+            
+        	/*String insertSQL = "INSERT INTO user (username,firstname,lastname,email, pass) VALUES ('"+id+"','"+firstname+"', '"+lastname+"','"+email+"', '"+pass+"') ";
+            
+            PreparedStatement preparedStatement = connection.prepareStatement(insertSQL);
+            preparedStatement.execute();
+            */
+        	
+        	
+            String selectSQL = "SELECT * FROM user where username='"+id+"' ";
             
             PreparedStatement preparedStatement2 = connection.prepareStatement(selectSQL);
             // preparedStatement2.execute();
             
             ResultSet rs = preparedStatement2.executeQuery();
-            
-            
-            //ResultSet rs = preparedStatement.executeQuery();
             /*
             while (rs.next()) {
                 String id = rs.getString("ID");
@@ -104,18 +97,17 @@ public class Servlet3 extends HttpServlet {
                 response.getWriter().append("USER PHONE: " + phone + "<br>");
             }
             */
-            String message = "Update Successful";
-            request.setAttribute("message", message);
+         
             request.setAttribute("resultSet", rs);
+            request.setAttribute("enteredPass",pass);
             
-            request.getRequestDispatcher("/WEB-INF/Page1.jsp").forward(request, response);
+            
+             request.getRequestDispatcher("/WEB-INF/LoggedIn.jsp").forward(request, response);
         } catch (SQLException e) {
             e.printStackTrace();
             response.getWriter().append("SQL Exception!");
 
         }
-        
-        
         
     }
 

@@ -11,15 +11,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/Servlet2")
-public class Servlet2 extends HttpServlet {
+@WebServlet("/Servlet6")
+public class Servlet6 extends HttpServlet {
     private static final long        serialVersionUID    = 1L;
     static String            url        = "jdbc:mysql://cmkoesters.ddns.net:3306/myDB";
     static String            user        = "newremoteuser";
     static String            password        = "password";
     static Connection            connection    = null;
 
-    public Servlet2() {
+    public Servlet6() {
         super();
     }
 
@@ -48,30 +48,16 @@ public class Servlet2 extends HttpServlet {
             System.out.println("Failed to make connection!");
         }
         
-        response.getWriter().println("Made it to Servlet 2!");
+        response.getWriter().println("Made it to Servlet 6!");
         
-        String itemNumber = request.getParameter("number");
-        response.getWriter().append("number: " + itemNumber + "<br>");
-        String itemName = request.getParameter("name");
-        response.getWriter().append("Name: " + itemName + "<br>");
-        String itemDistributor = request.getParameter("dist");
-        response.getWriter().append("Distributor: " + itemDistributor + "<br>");
-        String itemDescription = request.getParameter("desc");
-        response.getWriter().append("Description: " + itemDescription + "<br>");
-        String Quantity = request.getParameter("quantity");
-        response.getWriter().append("Quantity: " + Quantity + "<br>");
-        int itemQuantity = Integer.parseInt(Quantity);
+   
         
 
         
          
         try {
-            String insertSQL = "INSERT INTO inventory (NUMBER,NAME,DISTRIBUTOR,DESCRIPTION,QUANTITY) VALUES ('"+itemNumber+"','"+itemName+"', '"+itemDistributor+"','"+itemDescription+"', '"+itemQuantity+"') ";
-            
-            PreparedStatement preparedStatement = connection.prepareStatement(insertSQL);
-            preparedStatement.execute();
-            
-            String selectSQL = "SELECT * FROM inventory";
+           
+            String selectSQL = "SELECT * FROM listings";
             
             PreparedStatement preparedStatement2 = connection.prepareStatement(selectSQL);
             // preparedStatement2.execute();
@@ -89,11 +75,10 @@ public class Servlet2 extends HttpServlet {
                 response.getWriter().append("USER PHONE: " + phone + "<br>");
             }
             */
-            String message = "New Entry Added";
-            request.setAttribute("message", message);
+      
             request.setAttribute("resultSet", rs);
             
-            request.getRequestDispatcher("/WEB-INF/Page1.jsp").forward(request, response);
+            request.getRequestDispatcher("listings.jsp").forward(request, response);
         } catch (SQLException e) {
             e.printStackTrace();
             response.getWriter().append("SQL Exception!");
