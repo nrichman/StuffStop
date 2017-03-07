@@ -12,15 +12,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/forumList")
-public class showForumList extends HttpServlet {
+@WebServlet("/addForum")
+public class addForum extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	static String url = "jdbc:mysql://cmkoesters.ddns.net:3306/myDB";
 	static String user = "newremoteuser";
 	static String password = "password";
 	static Connection connection = null;
 
-	public showForumList() {
+	public addForum() {
 		super();
 	}
 
@@ -50,9 +50,21 @@ public class showForumList extends HttpServlet {
 			System.out.println("Failed to make connection!");
 		}
 
-		response.getWriter().println("Made it to Servlet 6!");
+		String id = request.getParameter("loginName");
+		String title = request.getParameter("title");
+		String description = request.getParameter("description");
+		String tag = request.getParameter("tag");
+		System.out.println(id);
+		/*
+		 * int itemQuantity = Integer.parseInt(Quantity);
+		 */
 
 		try {
+			String insertSQL = "INSERT INTO forum (user,title,description,tag) VALUES ('" + id + "','"
+					+ title + "', '" + description + "','" + tag + "') ";
+
+			PreparedStatement preparedStatement = connection.prepareStatement(insertSQL);
+			preparedStatement.execute();
 
 			String selectSQL = "SELECT * FROM forum";
 

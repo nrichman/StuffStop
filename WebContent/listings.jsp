@@ -42,7 +42,7 @@ h1{
 
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Listings Page</title>
+<title>Forum Page</title>
 </head>
 <body>
 
@@ -65,11 +65,37 @@ if (user == null){
 
 
 
-<h1>LISTINGS FOR <b>ROCKS</b></h1>
+<h1>FORUM</h1>
 <div>
 
+<h1>Create new thread:</h1>
 
+<form action="addForum" method="post">
+ 	
+ 	<input type="hidden" name="loginName" value="<%=user.getloginName() %>" />
+ 
+      <table>
+       <tr>
+          <td align="right">Title: </td>
+          <td align="left"><input type="text"
+              name="title"/></td>
+        </tr>
+                <tr>
+          <td align="right">Description:</td>
+          <td align="left"><input type="text"
+              name="description"/></td>
+        </tr>
+        <tr>
+          <td align="right">tag:</td>
+          <td align="left"><input type="text"
+              name="tag" /></td>
+        </tr>
+       
+      </table>
 
+      <p><input type="submit" value="Submit"/></p>
+ 
+</form>
 <%
 
 ResultSet rs = (ResultSet)request.getAttribute("resultSet");
@@ -77,33 +103,26 @@ ResultSet rs = (ResultSet)request.getAttribute("resultSet");
 %>
 <table>
 <tr>
-<td>ID</td><td>Item Name</td>
-<td>Owner</td><td>Buy Or Sell</td><td>Price</td><td>Posted on</td>
+<td>User</td><td>Title</td><td>Description</td><td>Tag</td>
 </tr>
 <%
 while (rs.next()) {
                 %>
                 <tr>
                 <%
-				String id = rs.getString("id");
-                String itemname = rs.getString("itemname");
-                String owner = rs.getString("owner");      
-                
-                String bos = rs.getString("bos");
-                String price = rs.getString("price");
-                String posted = rs.getString("posted");
+                String title = rs.getString("title");
+                String description = rs.getString("description");      
+                String tag = rs.getString("tag");
                 
     
                 
                 %>
                 
                 
-                 <td> <%= id %> </td>
-                 <td><%= itemname %> </td>
-                 <td><%= owner %></td>
-                 <td><%= bos %></td>
-                 <td><%= price %></td>
-                 <td><%= posted %></td>
+                 <td> <%= user.getloginName() %> </td>
+                 <td><%= title %> </td>
+                 <td><%= description %></td>
+                 <td><%= tag %></td>
                  
      
                <%
@@ -117,10 +136,8 @@ while (rs.next()) {
 
 <div>
 <h3>Pages:</h3>
-<a href="userPage.jsp">My Page</a><br>
-<a href="search.html">Search Page</a><br>
-<a href="other.html">Other Page</a><br>
 <a href="welcome.jsp">Welcome Page</a><br>
+<a href="userPage.jsp">My Page</a><br>
 </div>
 </body>
 </html>
