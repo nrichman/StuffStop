@@ -18,7 +18,7 @@ td, th{
 	 border: 1px solid black;
 	padding: 10px;
 	text-align: center;
-}
+} 
 div {
 	border: 1px solid black;
 	align: center;
