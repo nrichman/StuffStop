@@ -2,6 +2,7 @@ package com.users;
 
 public class User {
 // Hello
+
 	private String firstName;
 	private String surname;
 	private String loginName;
