@@ -36,13 +36,13 @@ h1{
 
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Registration Form</title>
+<title>Login Form</title>
 
 </head>
 <body>
-<h1>Please enter your information</h1>
+<h1>Please enter your login information:</h1>
 
-<form action="/TestProjectOriginal/Servlet5" method="post">
+<form action="/TestProjectOriginal/Servlet7" method="post">
  
       <table>
        <tr>
@@ -50,24 +50,10 @@ h1{
           <td align="left"><input type="text"
               name="loginName" length="30"/></td>
         </tr>
-                <tr>
-          <td align="right">Email:</td>
-          <td align="left"><input type="text"
-              name="email" length="25"/></td>
-        </tr>
-        <tr>
-          <td align="right">First name:</td>
-          <td align="left"><input type="text"
-              name="firstname" length="30"/></td>
-        </tr>
-        <tr>
-          <td align="right">Last name:</td>
-          <td align="left"><input type="text"
-              name="lastname" length="30"/></td>
-        </tr>
+ 
                 <tr>
           <td align="right">Password:</td>
-          <td align="left"><input type="text"
+          <td align="left"><input type="password"
               name="pass" length="30"/></td>
         </tr>
        

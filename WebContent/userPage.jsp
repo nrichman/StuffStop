@@ -4,6 +4,7 @@
     %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<head>
 <style>
 body {
   background-color : #AFEEEE;
@@ -38,48 +39,40 @@ h1{
 
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Welcome Page</title>
-
+<title>User Page!</title>
 </head>
 <body>
+
 <%
 User user = (User) session.getAttribute("user");
-
-String value;
-
-if (request.getParameter("value")!= null){
-	
-	value = request.getParameter("value").toString();
-}
-else{
-	value = "Not found";
-}
-if (value.equals("0")){
-	user = null;
-	request.getSession().invalidate();
-   
-}
 if (user == null){
 %>
-<h2>You are not registered! Please
+<h1>You are not registered! Please to go
 <a href="registrationform.jsp">Register</a>
-Or 
-<a href="Login.jsp">Login</a>
-
-</h2>
+</h1>
 <%
 } else {
 %>
 
-<h1> Welcome Page!</h1>
- <h3>Logged in as: <%=user.getloginName() %> </h3>
- <h3>Logout?</h3>
-  <a href="welcome.jsp?value=0">Logout</a><br>
+<h1> Welcome to the User page!</h1> 
+ <h3> Logged in as: <%=user.getloginName() %> </h3>
+ <p>Logout?<p>
+ <a href="welcome.jsp?value=0">Logout</a><br>
 
 <div>
-<h2>~MAIN WELCOME PAGE CONTENT~</h2>
+<h2>~USER PAGE CONTENT~</h2>
+<p>This is the page for users</p>
 
+<p>First name: <%=user.getFirstName() %></p>
+<p>Last name: <%=user.getSurname() %></p>
+<p>Email: <%=user.getEmail() %></p>
+
+
+<p> more stuff </p>
 </div>
+
+
+
 <h3>Pages:</h3>
 
 <a href="userPage.jsp">My Page</a><br>
@@ -93,6 +86,11 @@ Or
 
 <%
 }%>
+
+
+
+
+
 
 
 </body>

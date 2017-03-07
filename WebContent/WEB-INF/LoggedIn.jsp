@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import = "java.util.*" %> 
-<%@ page import = "java.sql.ResultSet" %> 
+<%@ page import = "java.sql.ResultSet" %>
+<%@	page import="com.users.*" %> 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -45,8 +46,10 @@ h1{
 </head>
 <body>
 
+<%-- 
     <jsp:useBean id="user" scope="session" class="com.users.User">
     </jsp:useBean>
+    
 <%
 	user.setloginName(request.getAttribute("id").toString());
 	user.setPass(request.getAttribute("pass").toString());
@@ -54,7 +57,7 @@ h1{
 	user.setSurname(request.getAttribute("lastname").toString());
 	user.setEmail(request.getAttribute("email").toString());
 %>
-    
+    --%>
     
     <%--  
     <p>Your first name is <%= user.getFirstName() %>.</p>
@@ -69,19 +72,21 @@ h1{
        <jsp:getProperty name="user" property="pass" />.</p>
 	--%>
 	
-<h1> Thank you for registering <b> <%=user.getloginName() %> </b>!</h1>
 <div>
 <%
 
 ResultSet rs = (ResultSet)request.getAttribute("resultSet");
+String login = "no";
+String userUsername = "";
+String userFirstname = "";
+String userLastname = "";
+String userEmail = "";
+
 %>
-<%-- 
-<table>
-<tr><th>ID</th><th>USERNAME</th><th>FIRSTNAME</th><th>LASTNAME</th><th>EMAIL</th></tr>
+
 
 <%
-ArrayList<String> myList;
-ArrayList<String> myList2;
+
 
 /*
 if (session.getAttribute("list") == null)
@@ -104,38 +109,81 @@ else{
 
 while (rs.next()) {
                 %>
-                <tr>
+                
                 <%
 				String number = rs.getString("id");
                 String username = rs.getString("username");
                 String name = rs.getString("firstname");
-          
+          		
                 
                 
                 String lastname = rs.getString("lastname");
                 String email = rs.getString("email");
+                String pass = rs.getString("pass");
+                
+                String enteredPass = request.getAttribute("enteredPass").toString();
+                
+             
+                
+                if (pass.equals(enteredPass)){
+                	login = "yes";
+                	userUsername = username;
+                	userFirstname = name;
+                	userLastname = lastname;
+                	userEmail = email;
+                }
+                else
+                {
+                	login = "no";
+                	
+                }
+                
+                
                 
                 %>
                 
                 
-                 <td> <%= number %> </td>
-                 <td><%= username %> </td>
-                 <td><%= name %></td>
-                 <td><%= lastname %></td>
-                   <td><%= email %></td>
-                 
+                
      
                <%
                %>
-               </tr>
+               
                <%
             }
 
 
+if (login.equals("yes")){
+	
+	%>
+	
+	SUCCESSFULLY LOGGED IN 
+	
+    <jsp:useBean id="user" scope="session" class="com.users.User">
+    </jsp:useBean>
+<%
+
+
+	
+	user.setloginName(userUsername);
+
+	user.setFirstName(userFirstname);
+	user.setSurname(userLastname);
+	user.setEmail(userEmail);
+%>
+	
+	<%
+	 
+} else
+{
+	%>
+	LOGIN FALIED RETURN TO MAIN
+	<%
+}
+
 %>
 </div>
-</table>
---%>
+
+
 
 <div>
 <p>
