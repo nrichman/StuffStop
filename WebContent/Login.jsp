@@ -42,7 +42,7 @@ h1{
 <body>
 <h1>Please enter your login information:</h1>
 
-<form action="/Main/loginServlet" method="post">
+<form action="loginServlet" method="post">
  
       <table>
        <tr>
