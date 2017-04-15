@@ -1,7 +1,8 @@
 <html>
-  <head>
-    <title>Register User</title>
-  </head>
+<head>
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+</head>
   <body>
     <h1>Register User</h1>
 
