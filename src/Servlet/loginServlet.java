@@ -56,32 +56,8 @@ public class loginServlet extends HttpServlet {
 
 		String id = request.getParameter("loginName");
 		String pass = request.getParameter("pass");
-		/*
-		 * response.getWriter().append("ID: " + id + "<br>"); String firstname =
-		 * request.getParameter("firstname");
-		 * response.getWriter().append("First Name: " + firstname + "<br>");
-		 * String lastname = request.getParameter("lastname");
-		 * response.getWriter().append("Last Name: " + lastname + "<br>");
-		 * String email = request.getParameter("email");
-		 * response.getWriter().append("Email: " + email + "<br>");
-		 * 
-		 * response.getWriter().append("Pass: " + pass + "<br>");
-		 * 
-		 * int itemQuantity = Integer.parseInt(Quantity);
-		 */
 
 		try {
-
-			/*
-			 * String insertSQL =
-			 * "INSERT INTO user (username,firstname,lastname,email, pass) VALUES ('"
-			 * +id+"','"+firstname+"', '"+lastname+"','"+email+"', '"+pass+"') "
-			 * ;
-			 * 
-			 * PreparedStatement preparedStatement =
-			 * connection.prepareStatement(insertSQL);
-			 * preparedStatement.execute();
-			 */
 
 			String selectSQL = "SELECT * FROM user where username='" + id + "' ";
 
@@ -89,20 +65,11 @@ public class loginServlet extends HttpServlet {
 			// preparedStatement2.execute();
 
 			ResultSet rs = preparedStatement2.executeQuery();
-			/*
-			 * while (rs.next()) { String id = rs.getString("ID"); String
-			 * username = rs.getString("MYUSER"); String email =
-			 * rs.getString("EMAIL"); String phone = rs.getString("PHONE");
-			 * response.getWriter().append("USER ID: " + id + ", ");
-			 * response.getWriter().append("USER NAME: " + username + ", ");
-			 * response.getWriter().append("USER EMAIL: " + email + ", ");
-			 * response.getWriter().append("USER PHONE: " + phone + "<br>"); }
-			 */
 
 			request.setAttribute("resultSet", rs);
 			request.setAttribute("enteredPass", pass);
 
-			request.getRequestDispatcher("index.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/LoggedIn.jsp").forward(request, response);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			response.getWriter().append("SQL Exception!");

@@ -9,6 +9,7 @@
 <html>
 <head>
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="stylde.css" />
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
@@ -77,6 +78,7 @@ while (rs.next()) {
                 %>
                 <tr>
                 <%
+                String userName = rs.getString("user");
                 String title = rs.getString("title");
                 String description = rs.getString("description");      
                 String tag = rs.getString("tag");
@@ -86,7 +88,7 @@ while (rs.next()) {
                 %>
                 
                 
-                 <td> <%= user.getloginName() %> </td>
+                 <td> <%= userName %> </td>
                  <td><%= title %> </td>
                  <td><%= description %></td>
                  <td><%= tag %></td>
