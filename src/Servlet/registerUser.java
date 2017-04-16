@@ -79,15 +79,7 @@ public class registerUser extends HttpServlet {
 			// preparedStatement2.execute();
 
 			ResultSet rs = preparedStatement2.executeQuery();
-			/*
-			 * while (rs.next()) { String id = rs.getString("ID"); String
-			 * username = rs.getString("MYUSER"); String email =
-			 * rs.getString("EMAIL"); String phone = rs.getString("PHONE");
-			 * response.getWriter().append("USER ID: " + id + ", ");
-			 * response.getWriter().append("USER NAME: " + username + ", ");
-			 * response.getWriter().append("USER EMAIL: " + email + ", ");
-			 * response.getWriter().append("USER PHONE: " + phone + "<br>"); }
-			 */
+
 			String message = "New Entry Added";
 			request.setAttribute("message", message);
 			request.setAttribute("resultSet", rs);

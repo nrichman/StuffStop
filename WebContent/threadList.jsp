@@ -79,23 +79,17 @@ while (rs.next()) {
                 <tr>
                 <%
                 String userName = rs.getString("user");
+                String href = "userPage.jsp?name=" + rs.getString("user");
                 String title = rs.getString("title");
                 String description = rs.getString("description");      
                 String tag = rs.getString("tag");
-                
-    
-                
                 %>
                 
                 
-                 <td> <%= userName %> </td>
+                 <td><a href=<%=href%>><%=userName%></a></td> <!-- Makes an href to the profile of the user who posted it -->
                  <td><%= title %> </td>
                  <td><%= description %></td>
                  <td><%= tag %></td>
-                 
-     
-               <%
-               %>
                </tr>
                <%
             }

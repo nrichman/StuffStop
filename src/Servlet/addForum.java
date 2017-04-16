@@ -74,7 +74,7 @@ public class addForum extends HttpServlet {
 
 			request.setAttribute("resultSet", rs);
 
-			request.getRequestDispatcher("listings.jsp").forward(request, response);
+			request.getRequestDispatcher("threadList.jsp").forward(request, response);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			response.getWriter().append("SQL Exception!");

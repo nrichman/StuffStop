@@ -16,7 +16,6 @@ User user = (User) session.getAttribute("user");
 String value;
 
 if (request.getParameter("value")!= null){
-	
 	value = request.getParameter("value").toString();
 }
 else{
@@ -50,14 +49,9 @@ Or
 </div>
 <h3>Pages:</h3>
 
-<a href="userPage.jsp">My Page</a><br>
+<a href="userPage.jsp?name=<%=user.getloginName() %> ">My Page</a><br>
 <a href="forumList">NewListings</a><br>
-
-
-
-
-<%
-}%>
+<%}%>
 
 
 </body>
