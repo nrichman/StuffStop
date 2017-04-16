@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/addForum")
 public class addForum extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	static String url = "jdbc:mysql://cmkoesters.ddns.net:3306/myDB";
+	static String url = "jdbc:mysql://ec2-52-10-150-59.us-west-2.compute.amazonaws.com:3306/myDB";
 	static String user = "newremoteuser";
 	static String password = "password";
 	static Connection connection = null;

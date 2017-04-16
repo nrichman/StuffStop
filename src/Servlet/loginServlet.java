@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/loginServlet")
 public class loginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	static String url = "jdbc:mysql://cmkoesters.ddns.net:3306/myDB";
+	static String url = "jdbc:mysql://ec2-52-10-150-59.us-west-2.compute.amazonaws.com:3306/myDB";
 	static String user = "newremoteuser";
 	static String password = "password";
 	static Connection connection = null;
@@ -41,6 +41,7 @@ public class loginServlet extends HttpServlet {
 		try {
 			connection = DriverManager.getConnection(url, user, password);
 		} catch (SQLException e) {
+			response.getWriter().println("Connection Failed! Check output console");
 			System.out.println("Connection Failed! Check output console");
 			e.printStackTrace();
 			return;
@@ -101,7 +102,7 @@ public class loginServlet extends HttpServlet {
 			request.setAttribute("resultSet", rs);
 			request.setAttribute("enteredPass", pass);
 
-			request.getRequestDispatcher("/WEB-INF/LoggedIn.jsp").forward(request, response);
+			request.getRequestDispatcher("index.jsp").forward(request, response);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			response.getWriter().append("SQL Exception!");
