@@ -10,7 +10,7 @@
 <html>
 <head>
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" href="stylde.css" />
+<link rel="stylesheet" type="text/css" href="bootstrap/css/style.css" />
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
@@ -25,35 +25,9 @@ String userFirstname = "";
 String userLastname = "";
 String userEmail = "";
 
-%>
-
-
-<%
-
-
-/*
-if (session.getAttribute("list") == null)
-{
-	myList = new ArrayList<String>();
-	myList2 = new ArrayList<String>();
-
-
-}
-else{
-	myList = (ArrayList)session.getAttribute("list");
-	myList2 = (ArrayList)session.getAttribute("list2");
-
-	myList.clear();
-	myList2.clear();
-}
-*/
-// ArrayList<String> myList = new ArrayList<String>();
-// myList.clear();
 
 while (rs.next()) {
-                %>
-                
-                <%
+
 				String number = rs.getString("id");
                 String username = rs.getString("username");
                 String name = rs.getString("firstname");
@@ -80,18 +54,6 @@ while (rs.next()) {
                 	login = "no";
                 	
                 }
-                
-                
-                
-                %>
-                
-                
-                
-     
-               <%
-               %>
-               
-               <%
             }
 
 
