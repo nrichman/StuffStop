@@ -30,7 +30,7 @@ if (user == null){ %>
 <h3>Pages:</h3>
 
 <a href="userPage.jsp">My Page</a><br>
-<a href="forumList">NewListings</a><br>
+<a href="threadList.jsp">Listings</a><br>
 <a href="welcome.jsp?value=0">Logout</a><br>
 
 </body>

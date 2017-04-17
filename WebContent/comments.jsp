@@ -3,7 +3,11 @@
 
 <%@ page import = "java.util.*" %> 
 <%@ page import = "java.sql.ResultSet" %> 
+<%@ page import = "java.sql.PreparedStatement" %>
 <%@ page import="com.users.*" %>
+<%@ page import="java.sql.Connection"%>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="java.sql.DriverManager" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -31,47 +35,49 @@ if (user == null){
 }
 %>
 
+<%
+String threadNo = request.getParameter("ID");
+String location = request.getParameter("location");
+%>
 
+<h1>Create new comment:</h1>
 
-<h1>FORUM</h1>
-<div>
-
-<h1>Create new thread:</h1>
-
-<form action="addForum" method="post">
- 	
+<form action="addComment" method="post">
+ 	<input type="hidden" name="ID" value="<%=threadNo%>"/>
+ 	<input type="hidden" name="location" value="<%=location%>"/>
+ 	    
  	<input type="hidden" name="loginName" value="<%=user.getloginName() %>" />
- 
       <table>
        <tr>
-          <td align="right">Title: </td>
+          <td align="right">Text: </td>
           <td align="left"><input type="text"
-              name="title"/></td>
+              name="userPost"/></td>
         </tr>
-                <tr>
-          <td align="right">Description:</td>
-          <td align="left"><input type="text"
-              name="description"/></td>
-        </tr>
-        <tr>
-          <td align="right">tag:</td>
-          <td align="left"><input type="text"
-              name="tag" /></td>
-        </tr>
-       
       </table>
 
       <p><input type="submit" value="Submit"/></p>
  
 </form>
+
 <%
-
-ResultSet rs = (ResultSet)request.getAttribute("resultSet");
-
+/*Gets all of the information from THREAD to print the available threads*/
+Connection connection = null;
+String url = "jdbc:mysql://ec2-52-10-150-59.us-west-2.compute.amazonaws.com:3306/myDB";
+try {
+	connection = DriverManager.getConnection(url, "newremoteuser", "password");
+} catch (SQLException e) {
+	System.out.println("Connection Failed! Check output console");
+	e.printStackTrace();
+	return;
+}
+String selectSQL = "SELECT * FROM COMMENT WHERE ID = " + threadNo;
+PreparedStatement preparedStatement2 = connection.prepareStatement(selectSQL);
+ResultSet rs = preparedStatement2.executeQuery();
 %>
+
 <table>
 <tr>
-<td>User</td><td>Title</td><td>Description</td><td>Tag</td>
+<td>USERNAME</td><td>TEXT</td>
 </tr>
 <%
 while (rs.next()) {
@@ -79,21 +85,14 @@ while (rs.next()) {
                 <tr>
                 <%
                 String userName = rs.getString("user");
+                String text = rs.getString("text");
+                
                 String href = "userPage.jsp?name=" + rs.getString("user");
-                String title = rs.getString("title");
-                String description = rs.getString("description");      
-                String tag = rs.getString("tag");
+                String href2 = "comments.jsp?ID=" + rs.getString("ID");
                 %>
                 
-                
                  <td><a href=<%=href%>><%=userName%></a></td> <!-- Makes an href to the profile of the user who posted it -->
-                 <td><%= title %> </td>
-                 <td><%= description %></td>
-                 <td><%= tag %></td>
-                 
-     
-               <%
-               %>
+                 <td><%= text %></td>
                </tr>
                <%
             }
@@ -101,7 +100,6 @@ while (rs.next()) {
 </table>
 </div>
 
-<div>
 <h3>Pages:</h3>
 <a href="welcome.jsp">Welcome Page</a><br>
 <a href="userPage.jsp">My Page</a><br>

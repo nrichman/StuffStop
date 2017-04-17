@@ -19,7 +19,7 @@
 <%
 
 ResultSet rs = (ResultSet)request.getAttribute("resultSet");
-String login = "no";
+boolean login = false;
 String userUsername = "";
 String userFirstname = "";
 String userLastname = "";
@@ -31,33 +31,24 @@ while (rs.next()) {
 				String number = rs.getString("id");
                 String username = rs.getString("username");
                 String name = rs.getString("firstname");
-          		
-                
-                
-                String lastname = rs.getString("lastname");
+				String lastname = rs.getString("lastname");
                 String email = rs.getString("email");
                 String pass = rs.getString("pass");
-                
-                String enteredPass = request.getAttribute("enteredPass").toString();
-                
-             
+         
+                String enteredPass = request.getAttribute("enteredPass").toString();  
                 
                 if (pass.equals(enteredPass)){
-                	login = "yes";
+                	login = true;
                 	userUsername = username;
                 	userFirstname = name;
                 	userLastname = lastname;
                 	userEmail = email;
-                }
-                else
-                {
-                	login = "no";
-                	
+                	break;
                 }
             }
 
 
-if (login.equals("yes")){
+if (login){
 	
 	%>
 	

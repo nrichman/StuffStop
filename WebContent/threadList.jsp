@@ -3,7 +3,11 @@
 
 <%@ page import = "java.util.*" %> 
 <%@ page import = "java.sql.ResultSet" %> 
+<%@ page import = "java.sql.PreparedStatement" %>
 <%@ page import="com.users.*" %>
+<%@ page import="java.sql.Connection"%>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="java.sql.DriverManager" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -64,11 +68,23 @@ if (user == null){
       <p><input type="submit" value="Submit"/></p>
  
 </form>
+
 <%
-
-ResultSet rs = (ResultSet)request.getAttribute("resultSet");
-
+/*Gets all of the information from THREAD to print the available threads*/
+Connection connection = null;
+String url = "jdbc:mysql://ec2-52-10-150-59.us-west-2.compute.amazonaws.com:3306/myDB";
+try {
+	connection = DriverManager.getConnection(url, "newremoteuser", "password");
+} catch (SQLException e) {
+	System.out.println("Connection Failed! Check output console");
+	e.printStackTrace();
+	return;
+}
+String selectSQL = "SELECT * FROM THREAD";
+PreparedStatement preparedStatement2 = connection.prepareStatement(selectSQL);
+ResultSet rs = preparedStatement2.executeQuery();
 %>
+
 <table>
 <tr>
 <td>User</td><td>Title</td><td>Description</td><td>Tag</td>
@@ -79,15 +95,16 @@ while (rs.next()) {
                 <tr>
                 <%
                 String userName = rs.getString("user");
-                String href = "userPage.jsp?name=" + rs.getString("user");
                 String title = rs.getString("title");
                 String description = rs.getString("description");      
                 String tag = rs.getString("tag");
+                
+                String href = "userPage.jsp?name=" + rs.getString("user");
+                String href2 = "comments.jsp?ID=" + rs.getString("ID");
                 %>
                 
-                
                  <td><a href=<%=href%>><%=userName%></a></td> <!-- Makes an href to the profile of the user who posted it -->
-                 <td><%= title %> </td>
+                 <td><a href=<%=href2%>><%=title%></a></td>
                  <td><%= description %></td>
                  <td><%= tag %></td>
                </tr>

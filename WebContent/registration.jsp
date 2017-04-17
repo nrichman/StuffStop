@@ -23,14 +23,6 @@
     <p>Your pass is
        <jsp:getProperty name="user" property="pass" />.</p>
 
-
-<%
-
-%>
-
-<%
-  
-%>
    
   </body>
 </html>

@@ -50,7 +50,7 @@ Or
 <h3>Pages:</h3>
 
 <a href="userPage.jsp?name=<%=user.getloginName() %> ">My Page</a><br>
-<a href="forumList">NewListings</a><br>
+<a href="threadList.jsp">NewListings</a><br>
 <%}%>
 
 

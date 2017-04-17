@@ -12,15 +12,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/forumList")
-public class showForumList extends HttpServlet {
+@WebServlet("/addComment")
+public class addComment extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	static String url = "jdbc:mysql://ec2-52-10-150-59.us-west-2.compute.amazonaws.com:3306/myDB";
 	static String user = "newremoteuser";
 	static String password = "password";
 	static Connection connection = null;
 
-	public showForumList() {
+	public addComment() {
 		super();
 	}
 
@@ -50,19 +50,18 @@ public class showForumList extends HttpServlet {
 			System.out.println("Failed to make connection!");
 		}
 
-		response.getWriter().println("Made it to Servlet 6!");
-
+		String ID = request.getParameter("ID");
+		String location = request.getParameter("location");
+		String userName = request.getParameter("loginName");
+		String userPost = request.getParameter("userPost");
 		try {
+			String insertSQL = "INSERT INTO COMMENT (ID,location,user,text) VALUES ('" + ID + "','" + location + "', '" + userName + "','" + userPost + "') ";
+			PreparedStatement preparedStatement1 = connection.prepareStatement(insertSQL);
+			preparedStatement1.execute();
 
-			String selectSQL = "SELECT * FROM forum";
-
-			PreparedStatement preparedStatement2 = connection.prepareStatement(selectSQL);
-
-			ResultSet rs = preparedStatement2.executeQuery();
-
-			request.setAttribute("resultSet", rs);
-
-			request.getRequestDispatcher("threadList.jsp").forward(request, response);
+			request.setAttribute("userid", ID);
+			request.getRequestDispatcher("/WEB-INF/addedComment.jsp").forward(request, response);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			response.getWriter().append("SQL Exception!");

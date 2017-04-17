@@ -50,31 +50,23 @@ public class addForum extends HttpServlet {
 			System.out.println("Failed to make connection!");
 		}
 
-		String id = request.getParameter("loginName");
+		String userName = request.getParameter("loginName");
 		String title = request.getParameter("title");
 		String description = request.getParameter("description");
 		String tag = request.getParameter("tag");
-		System.out.println(id);
-		/*
-		 * int itemQuantity = Integer.parseInt(Quantity);
-		 */
-
+		String location = "notyet";
 		try {
-			String insertSQL = "INSERT INTO forum (user,title,description,tag) VALUES ('" + id + "','"
-					+ title + "', '" + description + "','" + tag + "') ";
+			String nextID = "SELECT COUNT(*) from THREAD";
+			PreparedStatement preparedStatement0 = connection.prepareStatement(nextID);
+			ResultSet rs0 = preparedStatement0.executeQuery();
+		    rs0.next();
+		    int ID = rs0.getInt(1);
+			
+			String insertSQL = "INSERT INTO THREAD (ID,location,user,title,description,tag) VALUES ('" + ID + "','" + location + "', '" + userName + "','" + title + "', '" + description + "', '" + tag + "') ";
+			PreparedStatement preparedStatement1 = connection.prepareStatement(insertSQL);
+			preparedStatement1.execute();
 
-			PreparedStatement preparedStatement = connection.prepareStatement(insertSQL);
-			preparedStatement.execute();
-
-			String selectSQL = "SELECT * FROM forum";
-
-			PreparedStatement preparedStatement2 = connection.prepareStatement(selectSQL);
-
-			ResultSet rs = preparedStatement2.executeQuery();
-
-			request.setAttribute("resultSet", rs);
-
-			request.getRequestDispatcher("threadList.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/addedForum.jsp").forward(request, response);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			response.getWriter().append("SQL Exception!");
