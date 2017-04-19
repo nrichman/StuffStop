@@ -56,11 +56,12 @@ public class addForum extends HttpServlet {
 		String tag = request.getParameter("tag");
 		String location = "notyet";
 		try {
-			String nextID = "SELECT COUNT(*) from THREAD";
+			String nextID = "SELECT MAX(ID) FROM THREAD";
 			PreparedStatement preparedStatement0 = connection.prepareStatement(nextID);
 			ResultSet rs0 = preparedStatement0.executeQuery();
 		    rs0.next();
-		    int ID = rs0.getInt(1);
+		    int ID = rs0.getInt(1) + 1;
+		    System.out.println(ID);
 			
 			String insertSQL = "INSERT INTO THREAD (ID,location,user,title,description,tag) VALUES ('" + ID + "','" + location + "', '" + userName + "','" + title + "', '" + description + "', '" + tag + "') ";
 			PreparedStatement preparedStatement1 = connection.prepareStatement(insertSQL);

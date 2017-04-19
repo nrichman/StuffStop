@@ -38,8 +38,8 @@ if (user == null){
 %>
 
 <%
-String threadNo = request.getParameter("ID");
-String location = request.getParameter("location");
+String fromUser = request.getParameter("userA");
+String toUser = request.getParameter("userB");
 %>
 
 
@@ -54,29 +54,10 @@ try {
 	e.printStackTrace();
 	return;
 }
-String selectSQL = "SELECT * FROM COMMENT WHERE ID = " + threadNo;
-PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
+System.out.println(toUser + " " + fromUser);
+String selectSQL1 = "SELECT * FROM MESSAGE";
+PreparedStatement preparedStatement = connection.prepareStatement(selectSQL1);
 ResultSet rs = preparedStatement.executeQuery();
-
-String selectSQL2 = "SELECT * FROM THREAD WHERE ID = " + threadNo;
-PreparedStatement preparedStatement2 = connection.prepareStatement(selectSQL2);
-ResultSet rs2 = preparedStatement2.executeQuery();
-%>
-
-
-<%/* REMOVE THREAD */
-System.out.println(rs2.last());
-String thisUser = rs2.getString("user");
-if(thisUser.equals(user.getloginName())){
-%>
-
-<form action="removeForum" method="post">
-<input type="hidden" name="ID" value="<%=threadNo%>"/>
-<p><input type="submit" value="Remove Thread"/></p>
-</form>
-
-<%
-}
 %>
 
 <center>
@@ -87,37 +68,28 @@ if(thisUser.equals(user.getloginName())){
 <%
 while (rs.next()) {
                 %>
+                
                 <tr>
                 <%
-                String userName = rs.getString("user");
-                String text = rs.getString("text");
-                
-                String href = "userPage.jsp?name=" + rs.getString("user");
-                String href2 = "comments.jsp?ID=" + rs.getString("ID");
+                if(rs.getString("fromUser").equals(request.getParameter("userA")) || rs.getString("toUser").equals(request.getParameter("userA"))){
+                String userSource = rs.getString("fromUser");
+                String message = rs.getString("message");
                 %>
                 
-                 <td><a href=<%=href%>><%=userName%></a></td> <!-- Makes an href to the profile of the user who posted it -->
-                 <td><%= text %></td>
+                 <td><%=userSource%></td>
+                 <td><%=message%></td>
                </tr>
                <%
-            }
+            }}
 %>
 </table>
 </center>
 
-<b>Create new comment:</b>
-<form action="addComment" method="post">
- 	<input type="hidden" name="ID" value="<%=threadNo%>"/>
- 	<input type="hidden" name="location" value="<%=location%>"/>
- 	    
- 	<input type="hidden" name="loginName" value="<%=user.getloginName() %>" />
-      <table>
-       <tr>
-          <td align="right">Text: </td>
-          <td align="left"><input type="text"
-              name="userPost"/></td>
-        </tr>
-      </table>
+<b>New Message:</b>
+<form action="messageUser" method="post">
+ 	<input type="hidden" name="toUser" value="<%=toUser%>"/>
+ 	<input type="hidden" name="fromUser" value="<%=fromUser%>"/>
+	Text: <input type="text"  name="message"/>
 
       <p><input type="submit" value="Submit"/></p>
 </form>

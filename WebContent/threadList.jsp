@@ -40,7 +40,6 @@
 	%>
 
 
-
 	<h1>FORUM</h1>
 	<div>
 
@@ -48,27 +47,25 @@
 
 		<form action="addForum" method="post">
 
-			<input type="hidden" name="loginName"
-				value="<%=user.getloginName()%>" />
+			<input type="hidden" name="loginName" value="<%=user.getloginName()%>" />
 
 			<table>
 				<tr>
-					<td align="right">Title:</td>
-					<td align="left"><input type="text" name="title" /></td>
+					<td>Title:</td>
+					<td><input type="text" name="title" /></td>
 				</tr>
 				<tr>
-					<td align="right">Description:</td>
-					<td align="left"><input type="text" name="description" /></td>
+					<td>Description:</td>
+					<td><input type="text" name="description" /></td>
 				</tr>
 				<tr>
-					<td align="right">tag:</td>
-					<td align="left"><select name="tag">
+					<td>tag:</td>
+					<td><select name="tag">
 							<option value="Buy">Buy</option>
 							<option value="Sell">Sell</option>
 							<option value="Trade">Trade</option>
 					</select></td>
 				</tr>
-
 			</table>
 
 			<p>

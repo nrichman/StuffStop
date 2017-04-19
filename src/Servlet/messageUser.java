@@ -12,15 +12,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/addComment")
-public class addComment extends HttpServlet {
+@WebServlet("/messageUser")
+public class messageUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	static String url = "jdbc:mysql://ec2-52-10-150-59.us-west-2.compute.amazonaws.com:3306/myDB";
 	static String user = "newremoteuser";
 	static String password = "password";
 	static Connection connection = null;
 
-	public addComment() {
+	public messageUser() {
 		super();
 	}
 
@@ -50,18 +50,18 @@ public class addComment extends HttpServlet {
 			System.out.println("Failed to make connection!");
 		}
 
-		String ID = request.getParameter("ID");
-		String location = request.getParameter("location");
-		String userName = request.getParameter("loginName");
-		String userPost = request.getParameter("userPost");
+		String toUser = request.getParameter("toUser");
+		String fromUser = request.getParameter("fromUser");
+		String message = request.getParameter("message");
 		try {
-			String insertSQL = "INSERT INTO COMMENT (ID,location,user,text) VALUES ('" + ID + "','" + location + "', '" + userName + "','" + userPost + "') ";
+			String insertSQL = "INSERT INTO MESSAGE (toUser,fromUser,message) VALUES (\"" + toUser + "\",\"" + fromUser + "\",\"" + message + "\")";
+			System.out.println(insertSQL);
 			PreparedStatement preparedStatement1 = connection.prepareStatement(insertSQL);
 			preparedStatement1.execute();
-
-			request.setAttribute("postID", ID);
-			request.setAttribute("userName", userName);
-			request.getRequestDispatcher("/WEB-INF/addedComment.jsp").forward(request, response);
+			
+			request.setAttribute("toUser",toUser);
+			request.setAttribute("fromUser", fromUser);
+			request.getRequestDispatcher("/WEB-INF/addedMessage.jsp").forward(request, response);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

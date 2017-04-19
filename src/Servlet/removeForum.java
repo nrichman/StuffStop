@@ -12,15 +12,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/addComment")
-public class addComment extends HttpServlet {
+@WebServlet("/removeForum")
+public class removeForum extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	static String url = "jdbc:mysql://ec2-52-10-150-59.us-west-2.compute.amazonaws.com:3306/myDB";
 	static String user = "newremoteuser";
 	static String password = "password";
 	static Connection connection = null;
 
-	public addComment() {
+	public removeForum() {
 		super();
 	}
 
@@ -51,22 +51,23 @@ public class addComment extends HttpServlet {
 		}
 
 		String ID = request.getParameter("ID");
-		String location = request.getParameter("location");
-		String userName = request.getParameter("loginName");
-		String userPost = request.getParameter("userPost");
+		System.out.println(ID);
 		try {
-			String insertSQL = "INSERT INTO COMMENT (ID,location,user,text) VALUES ('" + ID + "','" + location + "', '" + userName + "','" + userPost + "') ";
-			PreparedStatement preparedStatement1 = connection.prepareStatement(insertSQL);
+			//Remove the thread from its table
+			String removeSQL = "DELETE FROM THREAD WHERE ID="+ID;
+			PreparedStatement preparedStatement1 = connection.prepareStatement(removeSQL);
 			preparedStatement1.execute();
 
-			request.setAttribute("postID", ID);
-			request.setAttribute("userName", userName);
-			request.getRequestDispatcher("/WEB-INF/addedComment.jsp").forward(request, response);
+			//Remove all comments in the thread from their table
+			String removeSQL2 = "DELETE FROM COMMENT WHERE ID="+ID;
+			PreparedStatement preparedStatement2 = connection.prepareStatement(removeSQL2);
+			preparedStatement2.execute();
+			
+			request.getRequestDispatcher("/WEB-INF/removed.jsp").forward(request, response);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			response.getWriter().append("SQL Exception!");
-
 		}
 
 	}

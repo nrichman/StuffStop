@@ -45,6 +45,19 @@ String selectSQL = "SELECT * FROM THREAD WHERE user = '" +  request.getParameter
 PreparedStatement preparedStatement2 = connection.prepareStatement(selectSQL);
 ResultSet rs = preparedStatement2.executeQuery();
 %>
+
+<center>
+<%if (!request.getParameter("name").equals(user.getloginName())){ %>
+<b>Message this user:</b>
+<a href="conversation.jsp?userA=<%=user.getloginName() %>&userB=<%=request.getParameter("name")%>">
+   <button>Message This User</button>
+</a>
+
+<%} %>
+</center>
+
+
+
 <center>
 <table>
 <tr>Posts from this user:<tr>

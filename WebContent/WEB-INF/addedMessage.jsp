@@ -7,12 +7,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%
-String threadID = request.getAttribute("postID").toString();
-String redirectURL = "comments.jsp?ID=" + threadID;
-
-String userName = request.getAttribute("userName").toString();
-String redirectURL2 = "userPage.jsp?name=" + userName;
+String url = "conversation.jsp?userA="+request.getAttribute("fromUser")+"&userB="+request.getAttribute("toUser");
 %>
 
-<c:redirect url="<%=redirectURL%>"/>
+<c:redirect url="<%=url%>"/>
+
 
