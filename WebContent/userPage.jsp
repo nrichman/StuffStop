@@ -8,6 +8,7 @@
 <%@ page import="java.sql.Connection"%>
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="java.sql.DriverManager" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -87,7 +88,7 @@ while (rs.next()) {
 </center>
 <h3>Pages:</h3>
 
-<a href="userPage.jsp">My Page</a><br>
+<a href="userPage.jsp?name=<%=user.getloginName() %>">My Page</a><br>
 <a href="threadList.jsp">Listings</a><br>
 <a href="welcome.jsp?value=0">Logout</a><br>
 
