@@ -122,9 +122,10 @@ while (rs.next()) {
                 
                 
                 <%
-                if(rs.getString("fromUser").equals(request.getParameter("userA")) || rs.getString("toUser").equals(request.getParameter("userA"))){
-                String userSource = rs.getString("fromUser");
+                String rsFrom = rs.getString("fromUser");
+                String rsTo = rs.getString("toUser");
                 String message = rs.getString("message");
+                if((rsFrom.equals(fromUser) && rsTo.equals(toUser)) || (rsFrom.equals(toUser) && rsTo.equals(fromUser))){
                 
                 if (rs.getString("fromUser").equals(request.getParameter("userA"))) {
                 %>
@@ -132,7 +133,7 @@ while (rs.next()) {
                 <div align="right">
                 <p style="background-color:#d6f5f5">
                  <%=message%>
-                   <span style="font-weight:bold; border:1px solid black; padding:2px"><%=userSource%></span>
+                   <span style="font-weight:bold; border:1px solid black; padding:2px"><%=rsFrom%></span>
                  <p>
                </div>
                
@@ -142,7 +143,7 @@ while (rs.next()) {
                 <div align="left">
                  <p style="background-color:#ccd9ff">
                  
-                 <span style="font-weight:bold; border:1px solid black; padding:2px"><%=userSource%></span>
+                 <span style="font-weight:bold; border:1px solid black; padding:2px"><%=rsFrom%></span>
                  
                  
                  <%=message%><p>
