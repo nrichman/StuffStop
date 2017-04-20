@@ -100,19 +100,12 @@ ResultSet rs2 = preparedStatement2.executeQuery();
 
 	<img src="bootstrap/logo.png" style="width:100%;height:100px;">
       <ul class="nav nav-pills nav-stacked">
-        <li class="active"><a href="Testing.jsp">Comments</a></li>
-        <li><a href="welcome.jsp">Welcome Page</a></li>
-        <li><a href="userPage.jsp">My Page</a></li>
+			        <li><a href="welcome.jsp">Welcome Page</a></li>
+			        <li><a href="userPage.jsp?name=<%=user.getloginName() %>">My Page</a></li>
+			        <li class="active"><a href="threadList.jsp">Forums</a></li>
    
       </ul><br>
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search Blog..">
-        <span class="input-group-btn">
-          <button class="btn btn-default" type="button">
-            <span class="glyphicon glyphicon-search"></span>
-          </button>
-        </span>
-      </div>
+      
     </div>
 
     <div class="col-sm-9">

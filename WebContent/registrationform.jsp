@@ -24,6 +24,15 @@
 	      color: white;
 	      padding: 15px;
 	    }
+	    body{
+	    background-color:#f1f1f1;
+	    
+	    }
+	        span{
+	    background-color: white;
+	    border: 2px, solid black;
+	    text-align:center;
+	    }
 	    
 	    /* On small screens, set height to 'auto' for sidenav and grid */
 	    @media screen and (max-width: 767px) {
@@ -37,10 +46,15 @@
 	</head>
 	<body>
 	<div class="container-fluid">
-<h1>Please enter your information</h1>
 
+
+
+<h3 style="text-align:center;">Please enter your information</h3>
+<div style="border:1px solid black; padding:5px; background-color: white;">
 <form action="registerUser" method="post">
  
+  <div align="center" style="vertical-align:bottom">
+<div align="center" style="vertical-align:bottom">
       <table>
        <tr>
           <td align="right">User Name:</td>
@@ -68,11 +82,14 @@
               name="pass" /></td>
         </tr>
        
-      </table>
+      </table><br>
 
-      <p><input type="submit" value="Submit"/></p>
- 
+      <p><input type="submit" class="btn btn-info" role="button" value="Submit"/></p>
+      </div>
+</div>
 </form>
 </div>
+</div>
+
 </body>
 </html>

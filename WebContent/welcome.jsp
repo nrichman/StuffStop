@@ -87,8 +87,15 @@
 						<!--   <h3>Logged in as: <%=user.getloginName() %> </h3> -->
 					<br>
 					<div>
-						<h2>~MAIN WELCOME PAGE CONTENT~</h2>
+						<h2>Welcome to StuffStop!</h2>
+						<p>The best place for hobbyists of all kinds. At StuffStop you can post your collectables for sale and look for something new! Meet friends with similar hobbies and join a community that pertains to your interests. It's the place to stop. For stuff!</p>
+					<br>
+					<h4>History</h4>
+					<p>Stuff Stop was established by four young university students in early 2017 and is has been making Internet users stop for stuff ever since.  </p>
 					</div>
+					<br>
+					<h4>What's New</h4>
+					<p>StuffStop is proud to announce users can now directly message other users, post threads, AND delete their own threads. How bout them apples!</p>
 					<%}%>
 				</div>
 			</div>
