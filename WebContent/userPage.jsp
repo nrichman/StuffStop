@@ -27,6 +27,20 @@
 	      background-color: #f1f1f1;
 	      height: 100%;
 	    }
+	    td {
+	    	background-color:#f1f1f1;
+	    	padding: 5px;
+	    	text-align: center;
+	    	border-bottom: 1px solid #000;
+	    
+	    }
+	    th{
+	    	font-weight:bold;
+	    	background-color:#f1f1f1;
+	    	padding: 5px;
+	    	text-align: center;
+	    	border-bottom: 1px solid #000;
+	    }
 	    
 	    /* Set black background color, white text and some padding */
 	    footer {
@@ -70,7 +84,7 @@
 				<div class="col-sm-9">
 
 <h1> Welcome to <b><%= request.getParameter("name") %></b>'s User page!</h1> 
- <h3> Logged in as: <%=user.getloginName() %> </h3>
+  <!--   <h3> Logged in as: <%=user.getloginName() %> </h3> -->
 
 <div>
 </div>
@@ -104,10 +118,10 @@ ResultSet rs = preparedStatement2.executeQuery();
 
 
 <center>
-<table>
-<tr>Posts from this user:<tr>
+<h3 style="text-align:center">Posts from this user:</h3>
+<table style="text-align:center; border: 1px solid black; width:60%">
 <tr>
-<td>Title</td><td>Description</td><td>Tag</td>
+<th>Title</th><th>Description</th><th>Tag</th>
 </tr>
 <%
 while (rs.next()) {

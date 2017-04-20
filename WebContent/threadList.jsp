@@ -33,6 +33,20 @@
 	      color: white;
 	      padding: 15px;
 	    }
+	     td {
+	    	background-color:#f1f1f1;
+	    	padding: 5px;
+	    	text-align: center;
+	    	border-bottom: 1px solid #000;
+	    
+	    }
+	    th{
+	    	font-weight:bold;
+	    	background-color:#f1f1f1;
+	    	padding: 5px;
+	    	text-align: center;
+	    	border-bottom: 1px solid #000;
+	    }
 	    
 	    /* On small screens, set height to 'auto' for sidenav and grid */
 	    @media screen and (max-width: 767px) {
@@ -67,43 +81,13 @@
 			      	</ul><br>
 			    </div>
 				<div class="col-sm-9">
-					<h3>Logged in as:<%=user.getloginName()%></h3>
-				<br>
+					<!--   <h3>Logged in as:<%=user.getloginName()%></h3> -->
+			
 
-	<h1>FORUM</h1>
+	<h2 style="text-align:center">Forum</h2>
 	<div>
 
-		<h1>Create new thread:</h1>
-
-		<form action="addForum" method="post">
-
-			<input type="hidden" name="loginName" value="<%=user.getloginName()%>" />
-
-			<table>
-				<tr>
-					<td>Title:</td>
-					<td><input type="text" name="title" /></td>
-				</tr>
-				<tr>
-					<td>Description:</td>
-					<td><input type="text" name="description" /></td>
-				</tr>
-				<tr>
-					<td>tag:</td>
-					<td><select name="tag">
-							<option value="Buy">Buy</option>
-							<option value="Sell">Sell</option>
-							<option value="Trade">Trade</option>
-					</select></td>
-				</tr>
-			</table>
-
-			<p>
-				<input type="submit" value="Submit" />
-			</p>
-
-		</form>
-
+		
 		<%
 			/*Gets all of the information from THREAD to print the available threads*/
 			Connection connection = null;
@@ -120,12 +104,12 @@
 			ResultSet rs = preparedStatement2.executeQuery();
 		%>
 
-		<table>
+		<table style="text-align:center; border: 1px solid black; width:96%">
 			<tr>
-				<td>User</td>
-				<td>Title</td>
-				<td>Description</td>
-				<td>Tag</td>
+				<th>User</th>
+				<th>Title</th>
+				<th>Description</th>
+				<th>Tag</th>
 			</tr>
 			<%
 				while (rs.next()) {
@@ -151,7 +135,41 @@
 				}
 			%>
 		</table>
+		
+		
+		<h3>Create new thread</h3>
+
+		<form action="addForum" method="post">
+
+			<input type="hidden" name="loginName" value="<%=user.getloginName()%>" />
+
+			<table style="text-align:center; border: 1px solid black; width:50">
+				<tr>
+					<td>Title:</td>
+					<td><input type="text" name="title" /></td>
+				</tr>
+				<tr>
+					<td>Description:</td>
+					<td><input type="text" name="description" /></td>
+				</tr>
+				<tr>
+					<td>tag:</td>
+					<td><select name="tag">
+							<option value="Buy">Buy</option>
+							<option value="Sell">Sell</option>
+							<option value="Trade">Trade</option>
+					</select></td>
+				</tr>
+			</table>
+<br>
+				<p><input type="submit" class="btn btn-info" role="button" value="Submit"/></p>
+			
+
+		</form>
+		
 	</div>
+	
+	
 	</div>
 	</div>
 	</div>

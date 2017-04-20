@@ -41,11 +41,14 @@
 		<%
 		User user = (User) session.getAttribute("user");
 		if (user != null){ %>
-			<p>Logged in as: <%=user.getloginName() %>
-			 <a href="welcome.jsp?value=0">Logout</a> </p>
+		<div style="background-color:#e6eeff">
+			<p>Logged in as: <span style="font-weight:bold"><%=user.getloginName() %></span>
+			  <a href="welcome.jsp?value=0">Logout</a>
+			 <!--  <a href="welcome.jsp?value=0" class="btn btn-info" role="button">Logout</a> </p> -->
 		<%
 		}
 		%>
+		</div>
 		<div class="container-fluid">
 			<div class="row content">
 			    <div class="col-sm-3 sidenav">
@@ -80,9 +83,9 @@
 					<%
 					} else {
 					%>
-					<h1> Welcome Page!</h1>
-						<h3>Logged in as: <%=user.getloginName() %> </h3>
-					<a href="welcome.jsp?value=0" class="btn btn-info" role="button">Logout</a><br>
+					<h1 style="text-align:center"> Welcome Page!</h1>
+						<!--   <h3>Logged in as: <%=user.getloginName() %> </h3> -->
+					<br>
 					<div>
 						<h2>~MAIN WELCOME PAGE CONTENT~</h2>
 					</div>
