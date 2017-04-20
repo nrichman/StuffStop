@@ -95,7 +95,22 @@ PreparedStatement preparedStatement2 = connection.prepareStatement(selectSQL2);
 ResultSet rs2 = preparedStatement2.executeQuery();
 %>
 
-    
+
+<%/* REMOVE THREAD */
+System.out.println(rs2.last());
+String thisUser = rs2.getString("user");
+if(thisUser.equals(user.getloginName())){
+%>
+
+<form action="removeForum" method="post">
+<input type="hidden" name="ID" value="<%=threadNo%>"/>
+<p><input type="submit" value="Remove Thread"/></p>
+</form>
+
+<%
+}
+%>
+ 
 
       <h4>StuffStop</h4>
       <ul class="nav nav-pills nav-stacked">
@@ -115,6 +130,9 @@ ResultSet rs2 = preparedStatement2.executeQuery();
     </div>
 
     <div class="col-sm-9">
+
+    <h2>Comments</h2><br>
+    <div class="row">
     
     <%
 while (rs.next()) {
@@ -127,18 +145,18 @@ while (rs.next()) {
                 String href2 = "comments.jsp?ID=" + rs.getString("ID");
                 %>
     
-      <h4><small>RECENT POSTS</small></h4>
-      <hr>
-      <h2>Title</h2>
-      
-      <h5><span class="glyphicon glyphicon-time"></span> Post by <a href=<%=href%>><%=userName%></a> Sep 27, 2015.</h5>
-      <h5><span class="label label-danger">Food</span> <span class="label label-primary">Ipsum</span></h5><br>
-      <p><%= text %></p>    <br><br>
-      
-      
+ <div class="col-sm-10" style="border: 1px solid grey">
+ <span>
+          <h4><a href=<%=href%>><%=userName%></a></h4>
+          <p><%= text %></p>
+          <br>
+          </span>
+        </div>
+ 
       <%
 }
 %>
+		</div>
       
       <h4>Leave a Comment:</h4>
       
@@ -153,43 +171,7 @@ while (rs.next()) {
 
     <button type="submit" class="btn btn-success" value="Submit" >Submit</button>
 	</form>
-      
-      
-      
-      
-      <p><span class="badge">2</span> Comments:</p><br>
-      
-      <div class="row">
-        <div class="col-sm-2 text-center">
-          <img src="bandmember.jpg" class="img-circle" height="65" width="65" alt="Avatar">
-        </div>
-        <div class="col-sm-10">
-          <h4>Anja <small>Sep 29, 2015, 9:12 PM</small></h4>
-          <p>Keep up the GREAT work! I am cheering for you!! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <br>
-        </div>
-        <div class="col-sm-2 text-center">
-          <img src="bird.jpg" class="img-circle" height="65" width="65" alt="Avatar">
-        </div>
-        <div class="col-sm-10">
-          <h4>John Row <small>Sep 25, 2015, 8:25 PM</small></h4>
-          <p>I am so happy for you man! Finally. I am looking forward to read about your trendy life. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <br>
-          <p><span class="badge">1</span> Comment:</p><br>
-          <div class="row">
-            <div class="col-sm-2 text-center">
-              <img src="bird.jpg" class="img-circle" height="65" width="65" alt="Avatar">
-            </div>
-            <div class="col-xs-10">
-              <h4>Nested Bro <small>Sep 25, 2015, 8:28 PM</small></h4>
-              <p>Me too! WOW!</p>
-              <br>
-            </div>
-          </div>
-        </div>
-      </div>
-     
-     
+
       
     </div>
   </div>

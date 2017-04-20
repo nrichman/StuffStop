@@ -86,9 +86,6 @@
 					<div>
 						<h2>~MAIN WELCOME PAGE CONTENT~</h2>
 					</div>
-					<h3>Pages:</h3>
-					<a href="userPage.jsp?name=<%=user.getloginName() %> " class="btn btn-info" role="button">My Page</a><br>
-					<a href="threadList.jsp" class="btn btn-info" role="button">NewListings</a><br>
 					<%}%>
 				</div>
 			</div>
