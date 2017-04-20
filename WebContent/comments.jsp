@@ -159,7 +159,7 @@ if(thisUser.equals(user.getloginName())){
 %>
 
 <form action="removeForum" method="post">
-<input type="hidden" name="ID" value="<%=threadNo%>"/>
+<input type="hidden" name="ID" value="<%=threadNo%>"/><br>
 <input type="submit" value="Remove Thread" class="btn btn-info" role="button"/>
 </form>
 

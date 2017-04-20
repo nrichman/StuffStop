@@ -62,5 +62,11 @@ ResultSet rs = (ResultSet)request.getAttribute("resultSet");
 %>
 
 
+<div>
+<h4 style="text-align:center">
+<a href="welcome.jsp">Go to Welcome Page</a>
+<h4>
+</div>
+
 </body>
 </html>
