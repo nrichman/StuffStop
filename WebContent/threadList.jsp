@@ -125,8 +125,8 @@
 
 	<div>
 		<h3>Pages:</h3>
-		<a href="welcome.jsp">Welcome Page</a><br> <a href="userPage.jsp">My
-			Page</a><br>
+		<a href="welcome.jsp">Welcome Page</a><br> 
+		<a href="userPage.jsp?name=<%=user.getloginName() %> ">My Page</a><br>
 	</div>
 </body>
 </html>
