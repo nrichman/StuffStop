@@ -102,7 +102,7 @@ String selectSQL1 = "SELECT * FROM MESSAGE";
 PreparedStatement preparedStatement = connection.prepareStatement(selectSQL1);
 ResultSet rs = preparedStatement.executeQuery();
 %>
-  <h4>StuffStop</h4>
+	<img src="bootstrap/logo.png" style="width:100%;height:100px;">
       <ul class="nav nav-pills nav-stacked">
         <li class="active"><a href="conversation.jsp">Messages</a></li>
         <li><a href="welcome.jsp">Welcome Page</a></li>

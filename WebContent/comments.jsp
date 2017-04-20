@@ -96,23 +96,9 @@ ResultSet rs2 = preparedStatement2.executeQuery();
 %>
 
 
-<%/* REMOVE THREAD */
-System.out.println(rs2.last());
-String thisUser = rs2.getString("user");
-if(thisUser.equals(user.getloginName())){
-%>
-
-<form action="removeForum" method="post">
-<input type="hidden" name="ID" value="<%=threadNo%>"/>
-<p><input type="submit" value="Remove Thread"/></p>
-</form>
-
-<%
-}
-%>
  
 
-      <h4>StuffStop</h4>
+	<img src="bootstrap/logo.png" style="width:100%;height:100px;">
       <ul class="nav nav-pills nav-stacked">
         <li class="active"><a href="Testing.jsp">Comments</a></li>
         <li><a href="welcome.jsp">Welcome Page</a></li>
@@ -172,7 +158,21 @@ while (rs.next()) {
     <button type="submit" class="btn btn-success" value="Submit" >Submit</button>
 	</form>
 
-      
+ 
+<%/* REMOVE THREAD */
+System.out.println(rs2.last());
+String thisUser = rs2.getString("user");
+if(thisUser.equals(user.getloginName())){
+%>
+
+<form action="removeForum" method="post">
+<input type="hidden" name="ID" value="<%=threadNo%>"/>
+<p><input type="submit" value="Remove Thread"/></p>
+</form>
+
+<%
+}
+%>     
     </div>
   </div>
 </div>

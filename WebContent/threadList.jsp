@@ -75,7 +75,7 @@
 		<div class="container-fluid">
 			<div class="row content">
 			    <div class="col-sm-3 sidenav">
-			      	<h4>Stuff Stop</h4>
+			      	<img src="bootstrap/logo.png" style="width:100%;height:100px;">
 			      	<ul class="nav nav-pills nav-stacked">
 			        <li><a href="welcome.jsp">Welcome Page</a></li>
 			        <li><a href="userPage.jsp?name=<%=user.getloginName() %>">My Page</a></li>
@@ -176,7 +176,7 @@
 	</div>
 	</div>
 		<footer class="container-fluid">
-		  <p>Footer Text</p>
+		  <p>Copyright 2017 :)</p>
 		</footer>
 </body>
 </html>
