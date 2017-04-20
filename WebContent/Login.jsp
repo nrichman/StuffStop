@@ -7,7 +7,14 @@
 	  	<style>
 	    /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
 	    .row.content {height: 1500px}
-	    
+	    body {
+	    background-color: #f1f1f1;
+	    }
+	    span{
+	    background-color: white;
+	    border: 2px, solid black;
+	    text-align:center;
+	    }
 	    /* Set gray background color and 100% height */
 	    .sidenav {
 	      background-color: #f1f1f1;
@@ -33,10 +40,13 @@
 	</head>
 	<body>
 	<div class="container-fluid">
-<h1>Please enter your login information:</h1>
-
+	
+<h1 style="text-align:center">Please enter your login information:</h1>
+<div style="border:1px solid black; padding:5px; background-color: white;">
 <form action="loginServlet" method="post">
  
+ <div align="center" style="vertical-align:bottom">
+<div align="center" style="vertical-align:bottom">
       <table>
        <tr>
           <td align="right">User Name:</td>
@@ -51,10 +61,15 @@
         </tr>
        
       </table>
+      <br>
 
-      <p><input type="submit" value="Submit"/></p>
+       <p><input type="submit" class="btn btn-info" role="button" value="Submit"/></p>
+      </div>
+</div>
  
 </form>
+</div>
+
 </div>
 </body>
 </html>
