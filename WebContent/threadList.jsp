@@ -65,8 +65,10 @@
 		<c:redirect url="/welcome.jsp"/>
 		<% 
 		} else {	
-			%><p>Logged in as: <%=user.getloginName() %>
+			%>
+			<div style="background-color:#e6eeff"><p>Logged in as: <%=user.getloginName() %>
 			 <a href="welcome.jsp?value=0">Logout</a> </p>
+			 </div>
 		<%
 		}
 		%>
@@ -84,7 +86,7 @@
 					<!--   <h3>Logged in as:<%=user.getloginName()%></h3> -->
 			
 
-	<h2 style="text-align:center">Forum</h2>
+	<h2>Forum</h2>
 	<div>
 
 		
