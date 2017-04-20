@@ -15,24 +15,67 @@
 <html>
 <head>
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" href="bootstrap/css/style.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+<style>
+    /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+    .row.content {height: 1500px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height: auto;} 
+    }
+  
+  
+    div.padded {  
+background: #444;  
+      color: white; 
+      padding-top: 10px;  
+      padding-right: 0px;  
+      padding-bottom: 0.25in;  
+      padding-left: 5em;  
+    }
+  </style>
 </head>
 <body>
 
+
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-3 sidenav">
+    
+  
 <%
 User user = (User) session.getAttribute("user");
 if (user == null){
 %>
-<h3>You are not registered! Please to go
+<p>You are not registered! Please to go
 <a href="registrationform.jsp">Register</a>
-</h3>
+</p>
 
 <% 
 } else {	
-	%><h3>Logged in as: <%=user.getloginName() %></h3>
-	<h3>Logout?</h3>
-	 <a href="welcome.jsp?value=0">Logout</a><br>
+	%><p>Logged in as: <%=user.getloginName() %>
+	 <a href="welcome.jsp?value=0">Logout</a> </p>
 <%
 }
 %>
@@ -59,44 +102,76 @@ String selectSQL1 = "SELECT * FROM MESSAGE";
 PreparedStatement preparedStatement = connection.prepareStatement(selectSQL1);
 ResultSet rs = preparedStatement.executeQuery();
 %>
+  <h4>StuffStop</h4>
+      <ul class="nav nav-pills nav-stacked">
+        <li class="active"><a href="conversation.jsp">Messages</a></li>
+        <li><a href="welcome.jsp">Welcome Page</a></li>
+        <li><a href="userPage.jsp">My Page</a></li>
+   
+      </ul><br>
+      </div>
+      <div class="col-sm-9">
+      <h2>Messages</h2>
 
-<center>
-<table>
-<tr>
-<td>USERNAME&nbsp;</td><td>TEXT</td>
-</tr>
+
+
+
 <%
 while (rs.next()) {
                 %>
                 
-                <tr>
+                
                 <%
                 if(rs.getString("fromUser").equals(request.getParameter("userA")) || rs.getString("toUser").equals(request.getParameter("userA"))){
                 String userSource = rs.getString("fromUser");
                 String message = rs.getString("message");
+                
+                if (rs.getString("fromUser").equals(request.getParameter("userA"))) {
                 %>
                 
-                 <td><%=userSource%></td>
-                 <td><%=message%></td>
-               </tr>
+                <div align="right">
+                <p style="background-color:#d6f5f5">
+                 <%=message%>
+                   <span style="font-weight:bold; border:1px solid black; padding:2px"><%=userSource%></span>
+                 <p>
+               </div>
+               
+               <% } else{
+               %>
+                
+                <div align="left">
+                 <p style="background-color:#ccd9ff">
+                 
+                 <span style="font-weight:bold; border:1px solid black; padding:2px"><%=userSource%></span>
+                 
+                 
+                 <%=message%><p>
+               </div>
+               
+               <%}
+                %>
+               
                <%
-            }}
+            }
+                
+}
 %>
-</table>
-</center>
 
-<b>New Message:</b>
+
+
+<h4>New Message</h4>
 <form action="messageUser" method="post">
- 	<input type="hidden" name="toUser" value="<%=toUser%>"/>
+    <input type="hidden" name="toUser" value="<%=toUser%>"/>
  	<input type="hidden" name="fromUser" value="<%=fromUser%>"/>
-	Text: <input type="text"  name="message"/>
-
-      <p><input type="submit" value="Submit"/></p>
+	<div class = "form-group"> 
+      <textarea class="form-control" type="text" name="message" rows="3" name="userPost" required></textarea>
+    </div>
+    <p><input type="submit" value="Submit"/></p>
 </form>
 
-<h3>Pages:</h3>
-<a href="welcome.jsp">Welcome Page</a><br>
-<a href="userPage.jsp">My Page</a><br>
+
+ </div>
+  </div>
 </div>
 </body>
 </html>

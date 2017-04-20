@@ -11,34 +11,64 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"
-	type="text/css" />
-<link rel="stylesheet" type="text/css" href="bootstrap/css/style.css" />
-<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-</head>
-<body>
-
-	<%
+	<head>
+		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		  <meta charset="utf-8">
+		  <meta name="viewport" content="width=device-width, initial-scale=1">
+		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+	  	<style>
+	    /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+	    .row.content {height: 1500px}
+	    
+	    /* Set gray background color and 100% height */
+	    .sidenav {
+	      background-color: #f1f1f1;
+	      height: 100%;
+	    }
+	    
+	    /* Set black background color, white text and some padding */
+	    footer {
+	      background-color: #555;
+	      color: white;
+	      padding: 15px;
+	    }
+	    
+	    /* On small screens, set height to 'auto' for sidenav and grid */
+	    @media screen and (max-width: 767px) {
+	      .sidenav {
+	        height: auto;
+	        padding: 15px;
+	      }
+	      .row.content {height: auto;} 
+	    }
+		</style>
+	</head>
+	<body>
+		<%
 		User user = (User) session.getAttribute("user");
-		if (user == null) {
-	%>
-	<h3>
-		You are not registered! Please to go <a href="registrationform.jsp">Register</a>
-	</h3>
-
-	<%
-		} else {
-	%><h3>
-		Logged in as:
-		<%=user.getloginName()%></h3>
-	<h3>Logout?</h3>
-	<a href="welcome.jsp?value=0">Logout</a>
-	<br>
-	<%
+		if (user == null){ %>
+		<c:redirect url="/welcome.jsp"/>
+		<% 
+		} else {	
+			%><p>Logged in as: <%=user.getloginName() %>
+			 <a href="welcome.jsp?value=0">Logout</a> </p>
+		<%
 		}
-	%>
-
+		%>
+		<div class="container-fluid">
+			<div class="row content">
+			    <div class="col-sm-3 sidenav">
+			      	<h4>Stuff Stop</h4>
+			      	<ul class="nav nav-pills nav-stacked">
+			        <li><a href="welcome.jsp">Welcome Page</a></li>
+			        <li><a href="userPage.jsp?name=<%=user.getloginName() %>">My Page</a></li>
+			        <li class="active"><a href="threadList.jsp">Forums</a></li>
+			      	</ul><br>
+			    </div>
+				<div class="col-sm-9">
+					<h3>Logged in as:<%=user.getloginName()%></h3>
+				<br>
 
 	<h1>FORUM</h1>
 	<div>
@@ -122,11 +152,11 @@
 			%>
 		</table>
 	</div>
-
-	<div>
-		<h3>Pages:</h3>
-		<a href="welcome.jsp">Welcome Page</a><br> 
-		<a href="userPage.jsp?name=<%=user.getloginName() %> ">My Page</a><br>
 	</div>
+	</div>
+	</div>
+		<footer class="container-fluid">
+		  <p>Footer Text</p>
+		</footer>
 </body>
 </html>
