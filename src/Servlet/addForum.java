@@ -23,7 +23,6 @@ public class addForum extends HttpServlet {
 	public addForum() {
 		super();
 	}
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
@@ -49,7 +48,6 @@ public class addForum extends HttpServlet {
 		} else {
 			System.out.println("Failed to make connection!");
 		}
-
 		String userName = request.getParameter("loginName");
 		String title = request.getParameter("title");
 		String description = request.getParameter("description");
